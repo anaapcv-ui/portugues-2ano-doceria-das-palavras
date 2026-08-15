@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧁 Doceria das Palavras — Português 2º ano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#E4577F; --rose-dark:#BC3B60;
+    --caramel:#D08B3C; --caramel-dark:#A96A22;
+    --berry:#7E4EA8; --berry-dark:#5E3583;
+    --mint:#2FA57C; --mint-soft:#E2F6EE;
+    --cream:#FFF6EC; --paper:#FFFFFF; --pink-bg:#FFEFF4;
+    --gray:#8C8074; --gray-soft:#F2ECE4;
+    --ink:#4A3529;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    font-family:'Nunito',sans-serif; font-weight:600; color:var(--ink);
+    background:var(--pink-bg);
+    background-image:
+      radial-gradient(circle at 10% 12%, rgba(228,87,127,.16) 0 4px, transparent 5px),
+      radial-gradient(circle at 82% 8%, rgba(208,139,60,.16) 0 4px, transparent 5px),
+      radial-gradient(circle at 55% 26%, rgba(126,78,168,.13) 0 4px, transparent 5px),
+      radial-gradient(circle at 24% 46%, rgba(47,165,124,.13) 0 4px, transparent 5px),
+      radial-gradient(circle at 90% 58%, rgba(228,87,127,.13) 0 4px, transparent 5px),
+      radial-gradient(circle at 42% 76%, rgba(208,139,60,.13) 0 4px, transparent 5px),
+      radial-gradient(circle at 70% 90%, rgba(126,78,168,.12) 0 4px, transparent 5px);
+    min-height:100vh;
+  }
+  .stage{max-width:560px; margin:0 auto; padding:0 12px 46px;}
+
+  /* ===== Topo: toldo da doceria ===== */
+  .awning{
+    position:relative; margin:0 -12px 4px; padding:20px 16px 30px; text-align:center;
+    background:repeating-linear-gradient(90deg, var(--rose) 0 32px, #FFF3F6 32px 64px);
+    border-bottom:6px solid var(--caramel);
+    clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),
+      95% 100%,90% calc(100% - 16px),85% 100%,80% calc(100% - 16px),75% 100%,
+      70% calc(100% - 16px),65% 100%,60% calc(100% - 16px),55% 100%,
+      50% calc(100% - 16px),45% 100%,40% calc(100% - 16px),35% 100%,
+      30% calc(100% - 16px),25% 100%,20% calc(100% - 16px),15% 100%,
+      10% calc(100% - 16px),5% 100%,0 calc(100% - 16px));
+  }
+  .awning h1{
+    font-family:'Baloo 2',cursive; font-size:1.85rem; line-height:1.1; margin:4px 0 2px;
+    color:var(--rose-dark); background:var(--paper); display:inline-block;
+    padding:8px 18px; border-radius:18px; border:4px solid var(--caramel-dark);
+    box-shadow:0 5px 0 rgba(0,0,0,.12);
+  }
+  .awning .sub{
+    display:inline-block; background:var(--berry); color:#FFF0C9; font-weight:900;
+    font-size:.82rem; padding:5px 14px; border-radius:999px; margin-top:10px;
+  }
+
+  /* ===== Bandeja de docinhos (colecionáveis) ===== */
+  .tray{display:flex; justify-content:center; gap:7px; flex-wrap:wrap; margin:12px 0 2px;}
+  .sw{
+    width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; background:#FFFFFF; border:3px dashed #E3C9B4;
+    filter:grayscale(1); opacity:.5; transition:.3s;
+  }
+  .sw.won{background:#FFF0C9; border:3px solid var(--caramel); filter:none; opacity:1; transform:scale(1.07);}
+  .tray-label{text-align:center; color:var(--berry-dark); font-size:.82rem; font-weight:900; margin:6px 0 10px;}
+
+  /* ===== Cartões / telas ===== */
+  .card{
+    background:var(--paper); border-radius:24px; padding:20px 17px; margin:14px 0;
+    border:4px solid var(--caramel-dark); box-shadow:0 8px 0 rgba(169,106,34,.28);
+  }
+  .screen{display:none; animation:pop .25s ease;}
+  .screen.on{display:block;}
+  @keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:scale(1);opacity:1}}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important;} }
+
+  h2{font-family:'Baloo 2',cursive; font-size:1.42rem; color:var(--rose-dark); margin:2px 0 10px; text-align:center;}
+  h3{font-family:'Baloo 2',cursive; font-size:1.14rem; color:var(--berry-dark); margin:16px 0 6px;}
+  p{font-size:1.05rem; line-height:1.55; margin:8px 0;}
+  .big-emoji{font-size:3.2rem; text-align:center; margin:4px 0;}
+  .hl{background:#FFE9A8; padding:0 6px; border-radius:6px; font-weight:900;}
+  .hl-b{color:var(--berry-dark); font-weight:900;}
+  .hl-r{color:var(--rose-dark); font-weight:900;}
+  .hl-g{color:var(--mint); font-weight:900;}
+
+  /* ===== Botões ===== */
+  .btn{
+    display:block; width:100%; border:none; cursor:pointer; text-align:center;
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:1.1rem;
+    padding:15px 12px; margin:10px 0; border-radius:18px; color:#fff;
+    background:var(--rose); box-shadow:0 5px 0 var(--rose-dark); transition:.12s;
+  }
+  .btn:active{transform:translateY(4px); box-shadow:0 1px 0 var(--rose-dark);}
+  .btn.caramel{background:var(--caramel); box-shadow:0 5px 0 var(--caramel-dark);}
+  .btn.berry{background:var(--berry); box-shadow:0 5px 0 var(--berry-dark);}
+  .btn.ghost{background:var(--paper); color:var(--caramel-dark); border:3px solid var(--caramel-dark); box-shadow:0 5px 0 var(--caramel-dark); font-size:1rem; padding:12px;}
+  .btn.done::after{content:" ✅";}
+  .btn:disabled{opacity:.45;}
+  .menu-desc{font-size:.83rem; font-weight:700; color:var(--gray); text-align:center; margin:-6px 0 4px;}
+  .step-tag{
+    display:inline-block; background:var(--berry); color:#fff; font-size:.68rem; font-weight:900;
+    padding:3px 9px; border-radius:999px; letter-spacing:.5px; margin:14px 0 2px;
+  }
+
+  /* ===== Pílulas de teoria ===== */
+  .pill-box{
+    background:var(--cream); border:3px dashed var(--caramel); border-radius:20px;
+    padding:16px; text-align:center; min-height:196px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .pill-box .pe{font-size:2.6rem;}
+  .pill-box p{font-size:1.1rem; font-weight:800;}
+  .pill-dots{text-align:center; margin:10px 0 2px; letter-spacing:4px; color:var(--gray); font-size:.9rem;}
+
+  /* ===== Perguntas / opções ===== */
+  .q-count{text-align:center; font-weight:900; color:var(--gray); font-size:.84rem; margin-bottom:6px;}
+  .q-sentence{
+    background:var(--cream); border-radius:16px; border:3px solid var(--caramel-dark);
+    padding:15px; text-align:center; font-size:1.22rem; font-weight:900; margin:8px 0 14px;
+  }
+  .opt{
+    display:block; width:100%; text-align:left; cursor:pointer;
+    background:#fff; border:3px solid var(--caramel-dark); border-radius:16px;
+    font-family:'Nunito',sans-serif; font-weight:800; font-size:1.03rem; color:var(--ink);
+    padding:14px; margin:9px 0; box-shadow:0 4px 0 rgba(169,106,34,.25); transition:.12s;
+  }
+  .opt:active{transform:translateY(3px); box-shadow:none;}
+  .opt.right{background:var(--mint-soft); border-color:var(--mint); color:#12653F;}
+  .opt.wrong{background:#FDE7EC; border-color:var(--rose-dark); color:var(--rose-dark);}
+  .opt:disabled{cursor:default;}
+  .punct-row{display:flex; gap:10px; justify-content:center;}
+  .punct-row .opt{text-align:center; font-size:2rem; padding:12px 0; margin:6px 0;}
+
+  /* ===== Feedback ===== */
+  .fb{display:none; border-radius:16px; padding:13px; margin:12px 0 2px; font-size:1rem; line-height:1.5;}
+  .fb.on{display:block;}
+  .fb.ok{background:var(--mint-soft); border:3px solid var(--mint); color:#12653F;}
+  .fb.no{background:#FFF4E2; border:3px solid var(--caramel); color:#7A4A11;}
+  .fb-right{display:block; margin-top:8px; font-weight:900; color:#12653F;}
+  .shake{animation:sh .32s;}
+  @keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+  /* ===== Potes (substantivos) ===== */
+  .word-show{
+    background:#FFF0C9; border:4px solid var(--caramel-dark); border-radius:18px;
+    text-align:center; font-family:'Baloo 2',cursive; font-size:2rem; padding:14px; margin:6px 0 12px;
+  }
+  .jars{display:flex; gap:10px;}
+  .jar{
+    flex:1; cursor:pointer; background:#fff; border:4px solid var(--berry); border-radius:18px;
+    padding:14px 6px; font-family:'Nunito',sans-serif; font-weight:900; font-size:1rem; color:var(--berry-dark);
+    box-shadow:0 5px 0 var(--berry-dark);
+  }
+  .jar.j2{border-color:var(--mint); color:#12653F; box-shadow:0 5px 0 #1B7A57;}
+  .jar:active{transform:translateY(3px); box-shadow:none;}
+  .jar .je{display:block; font-size:1.9rem; margin-bottom:2px;}
+  .jar small{display:block; font-weight:700; font-size:.72rem; color:var(--gray); margin-top:3px;}
+
+  /* ===== Montar frase ===== */
+  .built{
+    background:var(--cream); border:3px dashed var(--caramel); border-radius:16px;
+    min-height:60px; padding:12px; margin-bottom:12px; text-align:center;
+  }
+  .bw{display:inline-block; background:var(--berry); color:#fff; font-weight:900; padding:6px 11px; border-radius:10px; margin:3px;}
+  .balls{display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  .ball{
+    cursor:pointer; background:#FFF0C9; border:3px solid var(--caramel-dark); border-radius:999px;
+    font-family:'Nunito',sans-serif; font-weight:900; font-size:1.05rem; color:var(--ink);
+    padding:11px 16px; box-shadow:0 4px 0 rgba(169,106,34,.3);
+  }
+  .ball:active{transform:translateY(3px); box-shadow:none;}
+  .ball.used{opacity:.3; pointer-events:none;}
+
+  /* ===== Texto de leitura ===== */
+  .story{
+    background:var(--cream); border:3px solid var(--caramel); border-radius:18px;
+    padding:16px 16px 10px; margin:10px 0;
+  }
+  .story h4{font-family:'Baloo 2',cursive; font-size:1.2rem; text-align:center; color:var(--rose-dark); margin:2px 0 10px;}
+  .story p{text-indent:26px; font-size:1.02rem; margin:9px 0;}
+  .story .pnum{
+    display:inline-block; background:var(--berry); color:#fff; font-size:.7rem; font-weight:900;
+    border-radius:999px; padding:1px 7px; margin-right:5px; text-indent:0; vertical-align:middle;
+  }
+  details summary{font-weight:900; color:var(--berry-dark); cursor:pointer; margin-bottom:6px;}
+
+  /* ===== Cartaz (resumo) ===== */
+  .poster{
+    background:var(--cream); border:3px solid var(--caramel); border-radius:18px;
+    padding:14px 15px; margin:12px 0;
+  }
+  table{width:100%; border-collapse:collapse; font-size:.95rem; margin:6px 0;}
+  td{border:2px solid var(--caramel); padding:7px 8px; background:#fff; vertical-align:top;}
+  .pt-head td{background:var(--berry); color:#fff; font-weight:900; text-align:center;}
+  ol.steps{padding-left:20px; margin:6px 0;}
+  ol.steps li{margin:7px 0; font-size:1rem; line-height:1.45;}
+  ul.dots{padding-left:20px; margin:6px 0;}
+  ul.dots li{margin:6px 0; font-size:1rem; line-height:1.45;}
+
+  /* ===== Final / código ===== */
+  .medal{font-size:3.6rem;}
+  .code-box{
+    background:var(--berry); color:#FFF0C9; font-family:'Baloo 2',cursive; font-size:1.8rem;
+    border-radius:18px; padding:14px; margin:12px 0; letter-spacing:2px;
+  }
+  .save-info{text-align:center; font-size:.8rem; color:var(--gray); font-weight:700; margin-top:10px;}
+  .pais-link{text-align:center; margin-top:6px;}
+  .pais-link button{
+    background:none; border:none; color:var(--berry-dark); font-family:'Nunito',sans-serif;
+    font-weight:900; font-size:.88rem; text-decoration:underline; cursor:pointer; padding:6px;
+  }
+  .back-row{display:flex; gap:10px;}
+  .back-row .btn{margin:8px 0;}
+  textarea{
+    width:100%; min-height:78px; border-radius:14px; border:3px solid var(--caramel);
+    padding:10px; font-family:monospace; font-size:.8rem; resize:vertical; background:#fff; color:var(--ink);
+  }
+
+  /* ===== Confete ===== */
+  .cf{position:fixed; top:-40px; font-size:1.5rem; animation:fall linear forwards; z-index:60; pointer-events:none;}
+  @keyframes fall{to{transform:translateY(105vh) rotate(360deg); opacity:0;}}
+
+  /* ===== Modal (substitui alert/confirm) ===== */
+  .mask{
+    display:none; position:fixed; inset:0; background:rgba(74,53,41,.55);
+    z-index:100; align-items:center; justify-content:center; padding:18px;
+  }
+  .mask.on{display:flex;}
+  .modal{
+    background:var(--paper); border:4px solid var(--caramel-dark); border-radius:22px;
+    max-width:420px; width:100%; padding:20px 18px; box-shadow:0 10px 0 rgba(0,0,0,.2);
+  }
+  .modal h3{margin-top:0; text-align:center; color:var(--rose-dark);}
+  .modal p{font-size:1rem;}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <header class="awning">
+    <h1>🧁 Doceria das Palavras</h1>
+    <div class="sub">Português • 2º ano • Colégio São José</div>
+  </header>
+
+  <div class="tray">
+    <div class="sw" id="sw1">🍬</div>
+    <div class="sw" id="sw2">🎂</div>
+    <div class="sw" id="sw3">🫙</div>
+    <div class="sw" id="sw4">🥄</div>
+    <div class="sw" id="sw5">🍭</div>
+    <div class="sw" id="sw6">📖</div>
+  </div>
+  <div class="tray-label" id="trayLabel">Sua bandeja de docinhos</div>
+
+  <!-- ============ MENU ============ -->
+  <section class="screen on" id="scr-menu">
+    <div class="card">
+      <div class="big-emoji">👩‍🍳</div>
+      <p style="text-align:center; font-weight:800;">
+        Oi, jovem aprendiz! Eu sou a <span class="hl-r">Chef Cedilha</span>, dona da Doceria das Palavras.
+        Aqui a gente estuda <b>brincando</b> tudo o que cai na prova de <b>17/08</b>.
+        Faça uma receita de cada vez e ganhe um docinho para a bandeja! 🧁
+        <br><small style="color:var(--gray)">Dica: comece pela receita 🍬 e vá descendo.</small>
+      </p>
+
+      <div class="step-tag">1 • LEIA E JOGUE</div>
+      <button class="btn" id="mb1" onclick="startP(1)">🍬 Confeitos da Pontuação</button>
+      <p class="menu-desc">Ponto final, exclamação e interrogação</p>
+      <button class="btn" id="mb2" onclick="startP(2)">🎂 Bolo de Camadas: o Parágrafo</button>
+      <p class="menu-desc">O que é parágrafo + ler e entender o texto</p>
+      <button class="btn" id="mb3" onclick="startP(3)">🫙 Potes de Ingredientes</button>
+      <p class="menu-desc">Substantivo próprio e comum</p>
+      <button class="btn" id="mb4" onclick="startP(4)">🥄 Mexendo a Massa</button>
+      <p class="menu-desc">Escrever frases do jeito certo</p>
+      <button class="btn" id="mb5" onclick="startP(5)">🍭 A Cedilha Doce</button>
+      <p class="menu-desc">Quando usar C e quando usar Ç</p>
+      <button class="btn" id="mb6" onclick="startP(6)">📖 O Melhor Presente</button>
+      <p class="menu-desc">Interpretação de texto</p>
+
+      <div class="step-tag">2 • REVISE</div>
+      <button class="btn caramel" onclick="go('cartaz')">📜 Cartaz da Cozinha</button>
+      <p class="menu-desc">Toda a matéria da prova num cartaz só</p>
+
+      <div class="step-tag">3 • TESTE VALENDO</div>
+      <button class="btn berry" id="mbF" onclick="startFinal()">🏆 Grande Bolo Final</button>
+      <p class="menu-desc" id="finalHint">Complete as 6 receitas para liberar!</p>
+
+      <div class="save-info" id="saveInfo"></div>
+    </div>
+    <div class="pais-link"><button onclick="go('pais')">👨‍👩‍👧 Área dos pais</button></div>
+  </section>
+
+  <!-- ============ CARTAZ DA COZINHA (resumo) ============ -->
+  <section class="screen" id="scr-cartaz">
+    <div class="card">
+      <h2>📜 Cartaz da Cozinha</h2>
+      <p style="text-align:center;">Tudo o que cai na prova, num cartaz só. Leia com um adulto! 🤗</p>
+
+      <div class="poster">
+        <h3>🍬 1. PONTUAÇÃO — o confeito do fim da frase</h3>
+        <table>
+          <tr class="pt-head"><td>Sinal</td><td>Para que serve</td><td>Exemplo</td></tr>
+          <tr><td style="font-size:1.4rem; text-align:center;">.</td><td><b>Ponto-final</b><br>frase calma, que conta algo</td><td>Eu gosto de chocolate<b>.</b></td></tr>
+          <tr><td style="font-size:1.4rem; text-align:center;">?</td><td><b>Interrogação</b><br>pergunta (a voz sobe no fim)</td><td>Onde está o seu caderno<b>?</b></td></tr>
+          <tr><td style="font-size:1.4rem; text-align:center;">!</td><td><b>Exclamação</b><br>emoção forte, susto, alegria, ordem</td><td>Cuidado com o degrau<b>!</b></td></tr>
+        </table>
+        <p style="font-size:.95rem;">💡 <b>Nome das frases:</b> com <b>.</b> é <span class="hl-b">afirmativa</span> (e é <b>negativa</b> quando tem "não"); com <b>?</b> é <span class="hl-b">interrogativa</span>; com <b>!</b> é <span class="hl-b">exclamativa</span>.</p>
+        <p style="font-size:.95rem;">🔎 <b>Truque:</b> quase toda pergunta começa com <b>Onde, Quem, Quando, Como, O que, Por que</b> ou <b>Qual</b>. Achou uma delas? É <b>?</b></p>
+      </div>
+
+      <div class="poster">
+        <h3>🎂 2. PARÁGRAFO — as camadas do bolo</h3>
+        <ul class="dots">
+          <li>Parágrafo é cada <b>pedacinho do texto</b> que fala de uma ideia.</li>
+          <li>Ele sempre começa em uma <b>linha nova</b>, com um <b>espacinho para dentro</b> (é o recuo).</li>
+          <li>Começa com <b>letra maiúscula</b>.</li>
+          <li>Para contar quantos parágrafos tem um texto, conte quantos <b>começos com espacinho</b> você vê. 👀</li>
+        </ul>
+      </div>
+
+      <div class="poster">
+        <h3>🫙 3. SUBSTANTIVO — próprio ou comum?</h3>
+        <table>
+          <tr class="pt-head"><td>PRÓPRIO 🌟</td><td>comum 🍪</td></tr>
+          <tr>
+            <td>Nome <b>especial</b> de UM alguém, bicho, cidade ou marca</td>
+            <td>Nome <b>geral</b> das pessoas, bichos, lugares e coisas</td>
+          </tr>
+          <tr><td>Escreve-se com <b>MAIÚSCULA</b> em <b>qualquer lugar</b> da frase</td><td>escreve-se com <b>minúscula</b>, <b>menos</b> quando começa a frase</td></tr>
+          <tr><td><b>L</b>ucas, <b>M</b>anaus, <b>C</b>uritiba, <b>B</b>rasil, <b>R</b>ex</td><td>menino, cidade, país, cachorro, mesa</td></tr>
+        </table>
+        <p style="font-size:.95rem;">💡 <b>Substantivo</b> é a palavra que dá <b>nome</b> às coisas: pessoas, animais, lugares, objetos e até sentimentos.</p>
+        <p style="font-size:.95rem;">🔎 <b>Truque:</b> maiúscula <b>no meio da frase</b> é sinal de nome próprio. No começo da frase <i>todo mundo</i> usa maiúscula — até o comum: "<b>C</b>achorro é um animal fiel."</p>
+      </div>
+
+      <div class="poster">
+        <h3>🥄 4. ESCREVER FRASES do jeito certo</h3>
+        <ol class="steps">
+          <li>A frase tem <b>sentido completo</b> — dá para entender sozinha.</li>
+          <li>Começa com letra <b>Maiúscula</b>.</li>
+          <li>Termina com <b>. ! ou ?</b></li>
+          <li>Tem <b>espaço entre as palavras</b>:<br><span style="color:var(--rose-dark)">Eugostodedoce ❌</span> → <span style="color:var(--mint)">Eu gosto de doce ✅</span></li>
+          <li>As palavras ficam <b>na ordem certa</b>:<br><span style="color:var(--rose-dark)">bolo O está mesa na ❌</span> → <span style="color:var(--mint)">O bolo está na mesa ✅</span></li>
+        </ol>
+      </div>
+
+      <div class="poster">
+        <h3>🍭 5. CEDILHA (Ç) — a regra de ouro</h3>
+        <ul class="dots">
+          <li>O <b>Ç</b> faz o som de <b>SSS</b> e só aparece antes de <span class="hl">A, O, U</span>:<br>lou<b>ça</b> • mo<b>ço</b> • a<b>çú</b>car</li>
+          <li>O <b>Ã</b> e o <b>ÃO</b> são da <b>família do A</b> — por isso também levam ç:<br>ma<b>çã</b> • cora<b>ção</b> • li<b>ção</b></li>
+          <li>O <b>Ç NUNCA</b> começa uma palavra. ❌ <s>çapato</s></li>
+          <li>Antes de <span class="hl">E</span> e <span class="hl">I</span> usamos o <b>C</b> (que já faz som de SSS sozinho):<br><b>ce</b>noura • <b>ci</b>nema • do<b>ce</b> • va<b>ci</b>na</li>
+        </ul>
+        <table>
+          <tr class="pt-head"><td>com Ç (antes de a, ã, o, u)</td><td>com C (antes de e, i)</td></tr>
+          <tr>
+            <td>maçã, moço, laço, louça, praça,<br>palhaço, pedaço, caçula, coração,<br>açúcar, pescoço, almoço, dança,<br>lição*, canção, açude, paçoca</td>
+            <td>céu, cinema, cenoura, doce,<br>vacina, cebola, cidade, cinto,<br>alface, você, cesta, alicerce</td>
+          </tr>
+        </table>
+        <p style="font-size:.9rem;">*Cuidado com a pegadinha: em <b>lição</b>, <b>coração</b> e <b>maçã</b> o Ç vem antes de <b>ã</b>/<b>ão</b>, que são da família do <b>a</b>. Por isso é com <b>Ç</b>! 😉</p>
+      </div>
+
+      <div class="poster">
+        <h3>📖 6. INTERPRETAÇÃO DE TEXTO — jeito de detetive 🕵️</h3>
+        <ol class="steps">
+          <li>Leia o texto <b>todo</b>, com calma (pode ser em voz alta).</li>
+          <li>Leia a <b>pergunta</b> e sublinhe a palavra mais importante dela.</li>
+          <li><b>Volte no texto</b> e procure onde essa palavra aparece — a resposta está lá dentro!</li>
+          <li>Responda com <b>frase completa</b>, começando com maiúscula e terminando com ponto.</li>
+        </ol>
+      </div>
+
+      <div class="poster">
+        <h3>📓 7. REGISTROS NO CADERNO</h3>
+        <p style="font-size:.97rem;">
+          Antes da prova, abra o caderno e releia com um adulto os registros colados lá:
+          o cartaz da <b>Cedilha (Ç)</b>, o cartaz do <b>Substantivo próprio e comum</b>,
+          as folhas de <b>Pontuação</b> e os textos <b>"As meninas"</b> e
+          <b>"O Melhor Presente do Mundo"</b>. Este cartaz aqui é o resumo deles! 💛
+        </p>
+      </div>
+
+      <button class="btn ghost" onclick="go('menu')">⬅️ Voltar para a doceria</button>
+    </div>
+  </section>
+
+  <!-- ============ TELA DE PÍLULAS (teoria) ============ -->
+  <section class="screen" id="scr-pill">
+    <div class="card">
+      <h2 id="pillTitle"></h2>
+      <div class="pill-box" id="pillBox"></div>
+      <div class="pill-dots" id="pillDots"></div>
+      <button class="btn caramel" id="pillNext">Entendi! Próximo ➡️</button>
+      <button class="btn ghost" onclick="go('menu')">⬅️ Menu</button>
+    </div>
+  </section>
+
+  <!-- ============ TELA DE JOGO ============ -->
+  <section class="screen" id="scr-game">
+    <div class="card">
+      <h2 id="gameTitle"></h2>
+      <div class="q-count" id="gameCount"></div>
+      <div id="gameArea"></div>
+      <div class="fb" id="gameFb"></div>
+      <button class="btn caramel" id="gameNext" style="display:none;">Continuar ➡️</button>
+      <button class="btn ghost" onclick="go('menu')">⬅️ Menu</button>
+    </div>
+  </section>
+
+  <!-- ============ RECEITA CONCLUÍDA ============ -->
+  <section class="screen" id="scr-won">
+    <div class="card" style="text-align:center;">
+      <div class="medal">🧁</div>
+      <h2>Docinho conquistado!</h2>
+      <p id="wonMsg" style="font-weight:800;"></p>
+      <button class="btn" onclick="go('menu')">🍰 Voltar para a doceria</button>
+    </div>
+  </section>
+
+  <!-- ============ FINAL ============ -->
+  <section class="screen" id="scr-fim">
+    <div class="card" style="text-align:center;">
+      <div class="medal">🎂</div>
+      <h2>Grande Bolo Final pronto!</h2>
+      <p style="font-weight:900; font-size:1.18rem;" id="fimScore"></p>
+      <p id="fimMsg"></p>
+      <div class="code-box" id="fimCode"></div>
+      <p style="font-size:.88rem; color:var(--gray);">Mostre este código para o adulto que está com você! 😉</p>
+      <button class="btn berry" onclick="startFinal()">🔁 Fazer o Bolo Final de novo</button>
+      <button class="btn" onclick="go('menu')">🍰 Voltar para a doceria</button>
+    </div>
+  </section>
+
+  <!-- ============ ÁREA DOS PAIS ============ -->
+  <section class="screen" id="scr-pais">
+    <div class="card">
+      <h2>👨‍👩‍👧 Área dos pais</h2>
+      <p style="font-size:.95rem;">
+        O progresso é salvo <b>automaticamente</b> neste aparelho (não precisa de conta nem de internet).
+        <br><br><b>Conteúdo da verificação de 17/08/2026:</b> interpretação de texto; pontuação (! . ?);
+        escrita de frases; substantivo próprio e comum; parágrafo; cedilha; registros no caderno.
+      </p>
+      <div id="paisStatus"></div>
+
+      <h3>🗓️ Plano de estudo sugerido</h3>
+      <ol class="steps">
+        <li><b>Dia 1:</b> receitas 🍬 Pontuação, 🎂 Parágrafo e 🫙 Substantivos.</li>
+        <li><b>Dia 2:</b> receitas 🥄 Frases, 🍭 Cedilha e 📖 Interpretação.</li>
+        <li><b>Véspera da prova:</b> ler o 📜 Cartaz da Cozinha junto com um adulto e fazer o 🏆 Grande Bolo Final.</li>
+      </ol>
+
+      <h3>🔑 Sobre o código SIM-XX-YY</h3>
+      <p style="font-size:.95rem;">
+        No fim do Grande Bolo Final aparece um código como <b>SIM-08-KP</b>.<br>
+        • <b>XX</b> = quantos acertos (de 00 a 10).<br>
+        • <b>YY</b> = duas letras fixas deste aparelho. Se essas letras mudarem, é sinal de que o material foi zerado.
+      </p>
+
+      <h3>✅ Gabarito do Grande Bolo Final</h3>
+      <details><summary>Ver as 10 respostas</summary><div id="gabarito"></div></details>
+
+      <h3>💾 Backup do progresso</h3>
+      <div class="back-row">
+        <button class="btn berry" onclick="exportar()">📥 Exportar</button>
+        <button class="btn berry" onclick="importar()">📤 Importar</button>
+      </div>
+      <textarea id="backupBox" placeholder="O código do backup aparece (ou é colado) aqui."></textarea>
+      <button class="btn ghost" onclick="zerar()">🗑️ Zerar tudo</button>
+      <button class="btn" onclick="go('menu')">⬅️ Voltar</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ MODAL (no lugar de alert/confirm) ============ -->
+<div class="mask" id="mask">
+  <div class="modal">
+    <h3 id="mdTitle"></h3>
+    <p id="mdMsg"></p>
+    <button class="btn" id="mdOk">Está bem</button>
+    <button class="btn ghost" id="mdCancel" style="display:none;">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   DOCERIA DAS PALAVRAS — Português 2º ano (São José)
+   Verificação de 17/08/2026
+   ===================================================== */
+
+/* ---------- Estado + salvamento automático ---------- */
+var KEY='doceriaDasPalavras_v1';
+var MEM=null; /* memória de reserva se o localStorage estiver bloqueado */
+var S={sweets:[false,false,false,false,false,false], seed:null, finalScore:null, finalCode:null, savedAt:null};
+
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return MEM; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){ MEM=v; } }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} MEM=null; }
+
+try{ var raw=lsGet(KEY); if(raw){ var o=JSON.parse(raw); for(var k in o){ if(o.hasOwnProperty(k)) S[k]=o[k]; } } }catch(e){}
+if(!S.seed){ S.seed=String(Math.floor(Math.random()*1e9)); }
+
+function save(){
+  S.savedAt=new Date().toLocaleString('pt-BR');
+  lsSet(KEY, JSON.stringify(S));
+  refreshMenu();
+}
+
+/* ---------- Modal (substitui alert/confirm) ---------- */
+function modal(title,msg,onOk,withCancel){
+  document.getElementById('mdTitle').textContent=title;
+  document.getElementById('mdMsg').innerHTML=msg;
+  var mask=document.getElementById('mask');
+  var c=document.getElementById('mdCancel');
+  c.style.display = withCancel ? 'block' : 'none';
+  document.getElementById('mdOk').onclick=function(){ mask.classList.remove('on'); if(onOk) onOk(); };
+  c.onclick=function(){ mask.classList.remove('on'); };
+  mask.classList.add('on');
+}
+
+/* ---------- Bip de acerto/erro ---------- */
+var AC=null;
+function beep(ok){
+  try{
+    AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+    var o=AC.createOscillator(), g=AC.createGain();
+    o.connect(g); g.connect(AC.destination);
+    o.type='triangle'; g.gain.value=.07;
+    if(ok){ o.frequency.value=680; o.start(); o.frequency.exponentialRampToValueAtTime(1020, AC.currentTime+.15); o.stop(AC.currentTime+.18); }
+    else{ o.frequency.value=230; o.start(); o.frequency.exponentialRampToValueAtTime(165, AC.currentTime+.2); o.stop(AC.currentTime+.25); }
+  }catch(e){}
+}
+
+/* ---------- Confete ---------- */
+function confetti(n){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var em=['🧁','🍬','🍭','⭐','🎉','🍩'];
+  for(var i=0;i<(n||24);i++){
+    var d=document.createElement('div'); d.className='cf';
+    d.textContent=em[Math.floor(Math.random()*em.length)];
+    d.style.left=(Math.random()*100)+'vw';
+    d.style.animationDuration=(2+Math.random()*2)+'s';
+    document.body.appendChild(d);
+    (function(el){ setTimeout(function(){ el.remove(); },4500); })(d);
+  }
+}
+
+/* ---------- Embaralhar COM SEMENTE FIXA ----------
+   A ordem das alternativas é sorteada, mas fica sempre a mesma
+   neste aparelho — por isso as respostas salvas continuam valendo. */
+function hashStr(s){
+  var h=2166136261;
+  for(var i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); }
+  return h>>>0;
+}
+function mulberry32(a){
+  return function(){
+    a|=0; a=a+0x6D2B79F5|0;
+    var t=Math.imul(a^a>>>15, 1|a);
+    t=t+Math.imul(t^t>>>7, 61|t)^t;
+    return ((t^t>>>14)>>>0)/4294967296;
+  };
+}
+function shuffleSeeded(arr,key){
+  var rnd=mulberry32(hashStr(S.seed+'|'+key));
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+/* índices embaralhados das alternativas de uma questão */
+function optOrder(q,key){ return shuffleSeeded(q.opts.map(function(_,i){return i;}), key); }
+
+/* ---------- Navegação ---------- */
+function go(id){
+  var scr=document.querySelectorAll('.screen');
+  for(var i=0;i<scr.length;i++) scr[i].classList.remove('on');
+  document.getElementById('scr-'+id).classList.add('on');
+  window.scrollTo({top:0});
+  if(id==='menu') refreshMenu();
+  if(id==='pais') renderPais();
+}
+function refreshMenu(){
+  var done=0;
+  for(var i=1;i<=6;i++){
+    var ok=!!S.sweets[i-1];
+    document.getElementById('sw'+i).classList.toggle('won', ok);
+    document.getElementById('mb'+i).classList.toggle('done', ok);
+    if(ok) done++;
+  }
+  document.getElementById('trayLabel').textContent = done+' de 6 docinhos na bandeja 🧁';
+  var all = done===6;
+  document.getElementById('mbF').disabled=!all;
+  document.getElementById('finalHint').textContent = all
+    ? 'Liberado! Boa sorte, jovem aprendiz! ⭐'
+    : 'Complete as 6 receitas para liberar!';
+  document.getElementById('saveInfo').textContent = S.savedAt ? ('💾 Salvo automaticamente em '+S.savedAt) : '';
+}
+
+/* =====================================================
+   TEORIA EM PÍLULAS
+   ===================================================== */
+var PILLS={
+ 1:{title:'🍬 Confeitos da Pontuação', pills:[
+   {e:'👩‍🍳🍬', t:'Toda frase termina com um <span class="hl">confeito especial</span>: o <b>.</b> , o <b>?</b> ou o <b>!</b>'},
+   {e:'😌', t:'O <span class="hl-b">ponto-final ( . )</span> é da frase <b>calminha</b>, que só conta uma coisa: "Eu gosto de chocolate<b>.</b>" Ela se chama frase <b>afirmativa</b>.'},
+   {e:'🤔❓', t:'A <span class="hl-b">interrogação ( ? )</span> é da <b>pergunta</b>. A voz sobe no final: "Onde está o seu caderno<b>?</b>" Ela se chama frase <b>interrogativa</b>.'},
+   {e:'😱❗', t:'A <span class="hl-r">exclamação ( ! )</span> é da <b>emoção forte</b>: susto, alegria, ordem. "Cuidado com o degrau<b>!</b>" Ela se chama frase <b>exclamativa</b>.'},
+   {e:'🗣️', t:'Truque da Chef: <span class="hl">leia a frase em voz alta</span>. A voz sobe? É <b>?</b> A voz fica forte? É <b>!</b> A voz fica calma? É <b>.</b>'},
+   {e:'🔎', t:'Outro truque: quase toda pergunta começa com uma <span class="hl">palavrinha de pergunta</span> — <b>Onde, Quem, Quando, Como, O que, Por que, Qual</b>. Achou uma delas? Use <b>?</b>'},
+   {e:'🍬', t:'Agora é com você: escolha o confeito certo para cada frase!'}
+ ]},
+ 2:{title:'🎂 Bolo de Camadas: o Parágrafo', pills:[
+   {e:'🎂', t:'Um texto é como um <span class="hl">bolo de camadas</span>. Cada camada é um <b>parágrafo</b>.'},
+   {e:'↪️', t:'O parágrafo começa numa <b>linha nova</b>, com um <span class="hl">espacinho para dentro</span>. Esse espacinho se chama <b>recuo</b>.'},
+   {e:'🔢', t:'Para saber <b>quantos parágrafos</b> um texto tem, é só contar quantos <span class="hl">começos com espacinho</span> você enxerga. 👀'},
+   {e:'💡', t:'Cada parágrafo fala de <b>uma ideia</b>. E ele sempre começa com <b>letra maiúscula</b>.'},
+   {e:'📚', t:'Vamos ler um textinho e contar as camadas dele. Pode ler em voz alta!'}
+ ]},
+ 3:{title:'🫙 Potes de Ingredientes', pills:[
+   {e:'🍎🐱', t:'<span class="hl">Substantivo</span> é a palavra que dá <b>nome</b> às coisas: pessoas, animais, lugares, objetos e sentimentos.'},
+   {e:'🌟', t:'O substantivo <span class="hl-b">PRÓPRIO</span> é o nome <b>especial</b> de UM alguém ou lugar: <b>L</b>ucas, <b>M</b>anaus, <b>B</b>rasil. Começa com <b>MAIÚSCULA</b>!'},
+   {e:'🍪', t:'O substantivo <span class="hl-r">comum</span> fala das coisas de um jeito <b>geral</b>: menino, cidade, país. Começa com <b>minúscula</b>.'},
+   {e:'🔍', t:'Truque da Chef: olhe a <span class="hl">primeira letra</span>. Maiúscula no meio da frase? É próprio!'},
+   {e:'🫙', t:'Agora guarde cada palavra no pote certo!'}
+ ]},
+ 4:{title:'🥄 Mexendo a Massa', pills:[
+   {e:'🥄', t:'A <span class="hl">frase</span> é um grupo de palavras com <b>sentido completo</b> — dá para entender sozinha.'},
+   {e:'🔠', t:'Toda frase começa com <span class="hl">letra Maiúscula</span> e termina com <b>. ! ou ?</b>'},
+   {e:'↔️', t:'Entre uma palavra e outra tem que ter <span class="hl">ESPAÇO</span>: "Eugostodedoce" ❌ → "Eu gosto de doce" ✅'},
+   {e:'🔀', t:'E as palavras ficam na <span class="hl">ordem certa</span>: "bolo O está mesa na" ❌ → "O bolo está na mesa" ✅'},
+   {e:'🧑‍🍳', t:'Hora de mexer a massa: monte as frases e escolha as certas!'}
+ ]},
+ 5:{title:'🍭 A Cedilha Doce', pills:[
+   {e:'🍭', t:'O <span class="hl">Ç</span> (cê-cedilha) é o C com um rabinho embaixo. Ele faz o som de <b>SSS</b>.'},
+   {e:'🅰️🅾️🆄', t:'O <span class="hl-b">Ç</span> só brinca com três letras: <b>A, O e U</b>. Ele vem <b>antes</b> delas: lou<b>ça</b>, mo<b>ço</b>, a<b>çú</b>car.'},
+   {e:'🎈', t:'O <b>ã</b> e o <b>ão</b> são da <span class="hl">família do A</span> — então também pedem <b>ç</b>: ma<b>çã</b>, cora<b>ção</b>, li<b>ção</b>.'},
+   {e:'🚫', t:'Regra de ouro: o <span class="hl-r">Ç NUNCA começa</span> uma palavra! Não existe "çapato". 😅'},
+   {e:'🅴🅸', t:'Antes de <b>E</b> e <b>I</b>, quem faz o som de SSS é o <span class="hl">C</span> sozinho: <b>ce</b>noura, <b>ci</b>nema, do<b>ce</b>, va<b>ci</b>na.'},
+   {e:'🍬', t:'Cola da Chef: <b>ça, ço, çu</b> ✅ • <b>ce, ci</b> ✅ • <b>çe, çi</b> ❌ nunca!'},
+   {e:'👩‍🍳', t:'Agora complete as palavras com C ou Ç!'}
+ ]},
+ 6:{title:'📖 O Melhor Presente', pills:[
+   {e:'📖', t:'Chegou uma história na doceria! Para <span class="hl">interpretar um texto</span>, a resposta está sempre <b>escondida dentro dele</b>.'},
+   {e:'🕵️', t:'Truque de detetive: leia a pergunta, veja a <b>palavra mais importante</b> dela e <span class="hl">volte no texto</span> para achar essa palavra.'},
+   {e:'✍️', t:'Na prova, responda com <b>frase completa</b>: começando com maiúscula e terminando com ponto.'},
+   {e:'💛', t:'Leia a história com calma (pode ser em voz alta ou com um adulto) e depois responda!'}
+ ]}
+};
+
+var pillState={p:0, idx:0};
+function startP(p){
+  pillState={p:p, idx:0};
+  document.getElementById('pillTitle').textContent=PILLS[p].title;
+  renderPill();
+  go('pill');
+}
+function renderPill(){
+  var P=PILLS[pillState.p], i=pillState.idx;
+  document.getElementById('pillBox').innerHTML='<div class="pe">'+P.pills[i].e+'</div><p>'+P.pills[i].t+'</p>';
+  document.getElementById('pillDots').textContent=P.pills.map(function(_,k){return k===i?'●':'○';}).join(' ');
+  document.getElementById('pillNext').textContent=(i===P.pills.length-1)?'🍰 Começar o desafio!':'Entendi! Próximo ➡️';
+}
+document.getElementById('pillNext').onclick=function(){
+  var P=PILLS[pillState.p];
+  if(pillState.idx<P.pills.length-1){ pillState.idx++; renderPill(); }
+  else{ startGame(pillState.p); }
+};
+
+/* =====================================================
+   MOTOR DOS JOGOS
+   ===================================================== */
+function area(){ return document.getElementById('gameArea'); }
+function fbEl(){ return document.getElementById('gameFb'); }
+function nextBtn(){ return document.getElementById('gameNext'); }
+var G={};
+
+function setTitle(t,c){
+  document.getElementById('gameTitle').textContent=t;
+  document.getElementById('gameCount').textContent=c||'';
+}
+function showFb(ok,html){
+  var f=fbEl();
+  f.className='fb on '+(ok?'ok':'no');
+  f.innerHTML=(ok?'✅ <b>Muito bem!</b> ':'🤔 <b>Quase!</b> ')+html;
+  beep(ok);
+}
+function clearFb(){
+  var f=fbEl(); f.className='fb'; f.innerHTML='';
+  nextBtn().style.display='none';
+}
+function winFase(p,msg){
+  S.sweets[p-1]=true; save(); confetti(30);
+  document.getElementById('wonMsg').textContent=msg;
+  go('won');
+}
+function startGame(p){
+  clearFb();
+  if(p===1) g1_start();
+  if(p===2) g2_start();
+  if(p===3) g3_start();
+  if(p===4) g4_start();
+  if(p===5) g5_start();
+  if(p===6) g6_start();
+  go('game');
+}
+
+/* Renderiza uma questão de múltipla escolha.
+   IMPORTANTE: cada botão guarda o ÍNDICE ORIGINAL (data-i).
+   A comparação é sempre com q.r (índice original da resposta certa),
+   por isso embaralhar a ordem NUNCA muda o gabarito. */
+function renderMC(q,key,handler,punct){
+  var html='<div class="q-sentence" style="font-size:'+(punct?'1.22rem':'1.05rem')+';">'+q.q+'</div>';
+  var order=optOrder(q,key);
+  var opts='';
+  for(var k=0;k<order.length;k++){
+    var i=order[k];
+    opts+='<button class="opt" data-i="'+i+'" onclick="'+handler+'(this,'+i+')">'+q.opts[i]+'</button>';
+  }
+  html += punct ? ('<div class="punct-row">'+opts+'</div>') : opts;
+  area().innerHTML=html;
+}
+function markMC(btn,i,q){
+  var bs=document.querySelectorAll('#gameArea .opt');
+  for(var k=0;k<bs.length;k++){
+    bs[k].disabled=true;
+    if(+bs[k].getAttribute('data-i')===q.r) bs[k].classList.add('right');
+  }
+  if(i===q.r){ showFb(true,q.exp); return true; }
+  btn.classList.add('wrong');
+  showFb(false, q.exp+'<span class="fb-right">✅ Resposta certa: '+q.opts[q.r]+'</span>');
+  return false;
+}
+
+/* =====================================================
+   RECEITA 1 — PONTUAÇÃO
+   ===================================================== */
+var G1A=[
+  {s:'Onde está o seu caderno', r:'?', exp:'É uma <b>pergunta</b> (começa com "Onde"). Fica: "Onde está o seu caderno<b>?</b>"'},
+  {s:'Cuidado com o degrau', r:'!', exp:'É um <b>aviso forte</b>, quase um grito. Fica: "Cuidado com o degrau<b>!</b>"'},
+  {s:'Meu cachorro está dormindo', r:'.', exp:'A frase só <b>conta</b> uma coisa, com calma. Fica: "Meu cachorro está dormindo<b>.</b>"'},
+  {s:'Como você se chama', r:'?', exp:'Começa com <b>"Como"</b>, uma palavrinha de pergunta. Fica: "Como você se chama<b>?</b>"'},
+  {s:'Que dia mais lindo', r:'!', exp:'É <b>emoção</b>, admiração! Fica: "Que dia mais lindo<b>!</b>"'},
+  {s:'Eu gosto de chocolate', r:'.', exp:'A frase apenas conta um gosto seu, com calma. Fica: "Eu gosto de chocolate<b>.</b>"'},
+  {s:'Quem fez esse desenho tão bonito', r:'?', exp:'Começa com "Quem" e quer <b>saber</b> algo: é pergunta. Fica: "...tão bonito<b>?</b>"'},
+  {s:'Não fale de boca cheia', r:'!', exp:'É uma <b>ordem</b> dita com voz forte — e ordem com força leva <b>!</b> Fica: "Não fale de boca cheia<b>!</b>"'},
+  {s:'João virá para casa hoje', r:'.', exp:'Não tem palavrinha de pergunta nem emoção forte: é só um aviso calmo. Fica: "João virá para casa hoje<b>.</b>"'},
+  {s:'Que calor', r:'!', exp:'É uma <b>reclamação com emoção</b>. Fica: "Que calor<b>!</b>"'}
+];
+var G1B=[
+  {q:'"Essa casa é do meu tio?" — essa frase é...',
+   opts:['interrogativa','exclamativa','afirmativa'], r:0,
+   exp:'Ela termina com <b>?</b> e faz uma <b>pergunta</b> — por isso é <b>interrogativa</b>.'},
+  {q:'"O tempo está chuvoso." — essa frase é...',
+   opts:['afirmativa','interrogativa','exclamativa'], r:0,
+   exp:'Ela termina com <b>ponto-final</b> e só conta algo com calma — por isso é <b>afirmativa</b>.'},
+  {q:'"A fruta está estragada!" — essa frase é...',
+   opts:['exclamativa','afirmativa','interrogativa'], r:0,
+   exp:'Ela termina com <b>!</b> e mostra <b>emoção forte</b> (nojo, espanto) — por isso é <b>exclamativa</b>.'}
+];
+function g1_start(){ G={fase:'a', idx:0}; g1_render(); }
+function g1_render(){
+  if(G.fase==='a'){
+    if(G.idx>=G1A.length){ G.fase='b'; G.idx=0; g1_render(); return; }
+    var q=G1A[G.idx];
+    setTitle('🍬 Qual confeito termina a frase?','Frase '+(G.idx+1)+' de '+G1A.length);
+    var order=shuffleSeeded(['.','?','!'],'g1a'+G.idx);
+    var html='<div class="q-sentence">'+q.s+' <span style="color:var(--rose-dark)">__</span></div><div class="punct-row">';
+    for(var k=0;k<order.length;k++){
+      html+='<button class="opt" data-p="'+order[k]+'" onclick="g1_ansA(this,\''+order[k]+'\')">'+order[k]+'</button>';
+    }
+    area().innerHTML=html+'</div>';
+  }else{
+    if(G.idx>=G1B.length){
+      winFase(1,'Você domina o ponto-final, a interrogação e a exclamação! 🍬');
+      return;
+    }
+    setTitle('🍬 Como se chama essa frase?','Pergunta '+(G.idx+1)+' de '+G1B.length);
+    renderMC(G1B[G.idx],'g1b'+G.idx,'g1_ansB');
+  }
+}
+function g1_ansA(btn,p){
+  var q=G1A[G.idx];
+  var bs=document.querySelectorAll('#gameArea .opt');
+  for(var k=0;k<bs.length;k++){ bs[k].disabled=true; if(bs[k].getAttribute('data-p')===q.r) bs[k].classList.add('right'); }
+  if(p===q.r){ showFb(true,q.exp); }
+  else{ btn.classList.add('wrong'); showFb(false,q.exp); }
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g1_render(); };
+}
+function g1_ansB(btn,i){
+  markMC(btn,i,G1B[G.idx]);
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g1_render(); };
+}
+
+/* =====================================================
+   RECEITA 2 — PARÁGRAFO (com texto para ler)
+   ===================================================== */
+var TEXTO_PARQUE='<div class="story"><h4>O passeio no parque</h4>'+
+ '<p><span class="pnum">1º</span>O dia amanheceu bem bonito. Tomás e Bia foram cedo para o parque procurar folhas coloridas.</p>'+
+ '<p><span class="pnum">2º</span>Os dois são muito amigos. Eles moram na mesma rua e estudam na mesma escola.</p>'+
+ '<p><span class="pnum">3º</span>Tomás e Bia estavam juntando folhas para fazer um cartaz que a professora de Ciências pediu.</p>'+
+ '<p><span class="pnum">4º</span>Os dois são caprichosos e não se esqueceram do chapéu e do protetor solar antes de sair ao sol.</p>'+
+ '</div>';
+var G2=[
+  {q:'Quantos parágrafos tem o texto "O passeio no parque"?',
+   opts:['4 parágrafos','2 parágrafos','7 parágrafos'], r:0,
+   exp:'Conte os começos com espacinho: são <b>4 parágrafos</b> (as bolinhas 1º, 2º, 3º e 4º mostram cada um).'},
+  {q:'Como a gente percebe que começou um parágrafo NOVO?',
+   opts:['Ele começa em uma linha nova, com um espacinho para dentro','Ele começa com letra minúscula','Ele fica escrito em vermelho'], r:0,
+   exp:'O parágrafo sempre começa em uma <b>linha nova</b> com um <b>espacinho para dentro</b> (o recuo). E começa com letra <b>maiúscula</b>.'},
+  {q:'Quem são os personagens do texto?',
+   opts:['Tomás e Bia','O vizinho e o diretor','Larissa e Elisa'], r:0,
+   exp:'Estão no 1º parágrafo: <b>Tomás</b> e <b>Bia</b>. Personagens são quem participa da história.'},
+  {q:'Por que os dois estavam juntando folhas coloridas?',
+   opts:['Para fazer um cartaz que a professora de Ciências pediu','Para vender na feira','Para dar de comer aos passarinhos'], r:0,
+   exp:'A resposta está no <b>3º parágrafo</b>: eles juntam folhas "para fazer um cartaz que a professora de Ciências pediu".'},
+  {q:'O que eles não esqueceram antes de sair ao sol?',
+   opts:['O chapéu e o protetor solar','O guarda-chuva','A lancheira'], r:0,
+   exp:'Está no <b>4º parágrafo</b>: "não se esqueceram do <b>chapéu</b> e do <b>protetor solar</b>".'},
+  {q:'Quais palavras do texto são substantivos PRÓPRIOS?',
+   opts:['Tomás e Bia','parque e folhas','manhã e escola'], r:0,
+   exp:'<b>Tomás</b> e <b>Bia</b> são nomes especiais de pessoas e começam com MAIÚSCULA. As outras são substantivos comuns.'}
+];
+function g2_start(){ G={fase:'ler', idx:0}; g2_render(); }
+function g2_render(){
+  if(G.fase==='ler'){
+    setTitle('🎂 Leia o texto com atenção!','Pode ler em voz alta e pedir ajuda 😊');
+    area().innerHTML=TEXTO_PARQUE+'<button class="btn caramel" onclick="g2_go()">Já li! Vamos às perguntas ➡️</button>';
+    return;
+  }
+  if(G.idx>=G2.length){ winFase(2,'Você aprendeu a contar as camadas do texto — os parágrafos! 🎂'); return; }
+  setTitle('🎂 Marque a resposta certa!','Pergunta '+(G.idx+1)+' de '+G2.length);
+  var q=G2[G.idx];
+  var html='<details style="margin-bottom:8px;"><summary>👀 Espiar o texto de novo</summary>'+TEXTO_PARQUE+'</details>';
+  html+='<div class="q-sentence" style="font-size:1.05rem;">'+q.q+'</div>';
+  var order=optOrder(q,'g2'+G.idx);
+  for(var k=0;k<order.length;k++){
+    var i=order[k];
+    html+='<button class="opt" data-i="'+i+'" onclick="g2_ans(this,'+i+')">'+q.opts[i]+'</button>';
+  }
+  area().innerHTML=html;
+}
+function g2_go(){ G.fase='q'; G.idx=0; clearFb(); g2_render(); }
+function g2_ans(btn,i){
+  markMC(btn,i,G2[G.idx]);
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g2_render(); };
+}
+
+/* =====================================================
+   RECEITA 3 — SUBSTANTIVOS
+   ===================================================== */
+var G3=[
+  {w:'Lucas', r:'P', exp:'<b>Lucas</b> é o nome especial de um menino e começa com MAIÚSCULA. Próprio!'},
+  {w:'gato', r:'C', exp:'<b>gato</b> fala do animal de um jeito geral, com minúscula. Comum!'},
+  {w:'Manaus', r:'P', exp:'<b>Manaus</b> é o nome especial de uma cidade — MAIÚSCULA. Próprio!'},
+  {w:'mesa', r:'C', exp:'<b>mesa</b> é o nome geral de um objeto. Comum!'},
+  {w:'Curitiba', r:'P', exp:'<b>Curitiba</b> é o nome especial de uma cidade. Próprio!'},
+  {w:'telefone', r:'C', exp:'<b>telefone</b> é o nome geral de um objeto. Comum!'},
+  {w:'Brasil', r:'P', exp:'<b>Brasil</b> é o nome especial do nosso país — MAIÚSCULA. Próprio!'},
+  {w:'cidade', r:'C', exp:'<b>cidade</b> fala de qualquer cidade, de um jeito geral. Comum! (Já "Curitiba" é próprio.)'},
+  {w:'Maria', r:'P', exp:'<b>Maria</b> é o nome especial de uma pessoa. Próprio!'},
+  {w:'abelha', r:'C', exp:'<b>abelha</b> é o nome geral de um bichinho. Comum!'},
+  {w:'Honda', r:'P', exp:'<b>Honda</b> é o nome especial de uma marca — MAIÚSCULA. Próprio!'},
+  {w:'bola', r:'C', exp:'<b>bola</b> é o nome geral de um brinquedo. Comum!'}
+];
+function g3_start(){ G={idx:0, ordem:shuffleSeeded(G3.map(function(_,i){return i;}),'g3ordem')}; g3_render(); }
+function g3_render(){
+  if(G.idx>=G.ordem.length){ winFase(3,'Todos os ingredientes foram para o pote certo! Você domina os substantivos! 🫙'); return; }
+  var q=G3[G.ordem[G.idx]];
+  setTitle('🫙 Guarde a palavra no pote certo!','Palavra '+(G.idx+1)+' de '+G.ordem.length+' • Dica: olhe a primeira letra!');
+  area().innerHTML='<div class="word-show">'+q.w+'</div>'+
+    '<div class="jars">'+
+    '<button class="jar" onclick="g3_ans(\'P\')"><span class="je">🌟🫙</span>PRÓPRIO<small>letra MAIÚSCULA</small></button>'+
+    '<button class="jar j2" onclick="g3_ans(\'C\')"><span class="je">🍪🫙</span>comum<small>letra minúscula</small></button>'+
+    '</div>';
+}
+function g3_ans(p){
+  var q=G3[G.ordem[G.idx]];
+  var js=document.querySelectorAll('#gameArea .jar');
+  for(var k=0;k<js.length;k++) js[k].disabled=true;
+  if(p===q.r){ showFb(true,q.exp); }
+  else{ showFb(false,q.exp); }
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g3_render(); };
+}
+
+/* =====================================================
+   RECEITA 4 — ESCRITA DE FRASES
+   ===================================================== */
+var G4=[
+  {tipo:'ordem', palavras:['A','Bia','comeu','um','doce'], frase:'A Bia comeu um doce.'},
+  {tipo:'ordem', palavras:['O','bolo','está','na','mesa'], frase:'O bolo está na mesa.'},
+  {tipo:'ordem', palavras:['Meu','pai','adora','pão','de','queijo'], frase:'Meu pai adora pão de queijo.'},
+  {tipo:'x', q:'Qual frase está escrita do jeito CERTO?',
+   opts:['Eu gosto de açúcar.','Eugostodeaçúcar.','açúcar de gosto Eu.'], r:0,
+   exp:'A frase certa tem <b>espaço entre as palavras</b> e as palavras <b>na ordem certa</b>: "Eu gosto de açúcar." As outras estão grudadas ou embaralhadas.'},
+  {tipo:'x', q:'Quantas palavras tem a frase "O gato dorme no sofá."?',
+   opts:['5 palavras','3 palavras','7 palavras'], r:0,
+   exp:'Conte separando pelos espaços: O • gato • dorme • no • sofá = <b>5 palavras</b>!'},
+  {tipo:'x', q:'Toda frase precisa começar com...',
+   opts:['letra maiúscula','letra minúscula','um número'], r:0,
+   exp:'Toda frase começa com <b>letra maiúscula</b> e termina com um sinal de pontuação (. ! ?).'},
+  {tipo:'x', q:'O que deve aparecer no FINAL de toda frase?',
+   opts:['Um sinal de pontuação: . ! ou ?','Uma vírgula','O nome de quem escreveu'], r:0,
+   exp:'Toda frase termina com um <b>sinal de pontuação</b>: ponto-final, exclamação ou interrogação.'}
+];
+function g4_start(){ G={idx:0, montada:[]}; g4_render(); }
+function g4_render(){
+  if(G.idx>=G4.length){ winFase(4,'Frases montadas com capricho! A massa ficou no ponto! 🥄'); return; }
+  var q=G4[G.idx];
+  if(q.tipo==='ordem'){
+    setTitle('🥄 Toque nas palavras na ordem certa!','Frase '+(G.idx+1)+' de '+G4.length);
+    G.montada=[];
+    var html='<div class="built" id="builtRow"><span style="color:#BFAE9C; font-weight:800;">Monte a frase aqui...</span></div><div class="balls">';
+    var order=shuffleSeeded(q.palavras.map(function(_,i){return i;}),'g4'+G.idx);
+    for(var k=0;k<order.length;k++){
+      var i=order[k];
+      html+='<button class="ball" id="ball'+i+'" onclick="g4_pick('+i+')">'+q.palavras[i]+'</button>';
+    }
+    area().innerHTML=html+'</div>';
+  }else{
+    setTitle('🥄 Marque a resposta certa!','Desafio '+(G.idx+1)+' de '+G4.length);
+    renderMC(q,'g4'+G.idx,'g4_ans');
+  }
+}
+function g4_pick(i){
+  var q=G4[G.idx];
+  clearFb();
+  if(i===G.montada.length){
+    G.montada.push(q.palavras[i]); beep(true);
+    document.getElementById('ball'+i).classList.add('used');
+    document.getElementById('builtRow').innerHTML=G.montada.map(function(w){return '<span class="bw">'+w+'</span>';}).join('');
+    if(G.montada.length===q.palavras.length){
+      showFb(true,'Ficou perfeita: <b>"'+q.frase+'"</b> — com espaço entre as palavras, tudo na ordem, maiúscula no começo e ponto no fim! 👏');
+      nextBtn().style.display='block';
+      nextBtn().onclick=function(){ clearFb(); G.idx++; g4_render(); };
+    }
+  }else{
+    beep(false);
+    showFb(false,'Essa palavra ainda não encaixa aí. Pense: qual palavra vem <b>agora</b> para a frase fazer sentido? Leia em voz alta o que você já montou!');
+    area().classList.add('shake');
+    setTimeout(function(){ area().classList.remove('shake'); },350);
+  }
+}
+function g4_ans(btn,i){
+  markMC(btn,i,G4[G.idx]);
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g4_render(); };
+}
+
+/* =====================================================
+   RECEITA 5 — CEDILHA (C ou Ç)
+   ===================================================== */
+var G5A=[
+  {w:'palha_o', r:'ç', full:'palhaço', exp:'Depois da lacuna vem a letra <b>o</b> — e antes de <b>a, o, u</b> usamos <b>ç</b>: palha<b>ç</b>o.'},
+  {w:'_inema', r:'c', full:'cinema', exp:'Vem antes da letra <b>i</b> — e antes de <b>e, i</b> usamos <b>c</b>: <b>c</b>inema. (E o ç nunca começa palavra!)'},
+  {w:'ma_ã', r:'ç', full:'maçã', exp:'Vem antes da letra <b>ã</b> (que é da família do <b>a</b>) — então é <b>ç</b>: ma<b>ç</b>ã.'},
+  {w:'_enoura', r:'c', full:'cenoura', exp:'Vem antes da letra <b>e</b> — usamos <b>c</b>: <b>c</b>enoura. Além disso, o ç nunca começa uma palavra.'},
+  {w:'mo_o', r:'ç', full:'moço', exp:'Vem antes da letra <b>o</b> — então é <b>ç</b>: mo<b>ç</b>o.'},
+  {w:'la_o', r:'ç', full:'laço', exp:'Vem antes da letra <b>o</b> — então é <b>ç</b>: la<b>ç</b>o.'},
+  {w:'lou_a', r:'ç', full:'louça', exp:'Vem antes da letra <b>a</b> — então é <b>ç</b>: lou<b>ç</b>a.'},
+  {w:'va_ina', r:'c', full:'vacina', exp:'Vem antes da letra <b>i</b> — então é <b>c</b>: va<b>c</b>ina.'},
+  {w:'peda_o', r:'ç', full:'pedaço', exp:'Vem antes da letra <b>o</b> — então é <b>ç</b>: peda<b>ç</b>o.'},
+  {w:'do_e', r:'c', full:'doce', exp:'Vem antes da letra <b>e</b> — então é <b>c</b>: do<b>c</b>e.'},
+  {w:'cora_ão', r:'ç', full:'coração', exp:'Vem antes de <b>ão</b>, que começa com <b>a</b> — então é <b>ç</b>: cora<b>ç</b>ão.'},
+  {w:'pra_a', r:'ç', full:'praça', exp:'Vem antes da letra <b>a</b> — então é <b>ç</b>: pra<b>ç</b>a.'},
+  {w:'_éu', r:'c', full:'céu', exp:'Vem antes da letra <b>é</b> (da família do <b>e</b>) — então é <b>c</b>: <b>c</b>éu. E o ç nunca começa palavra!'},
+  {w:'a_úcar', r:'ç', full:'açúcar', exp:'Vem antes da letra <b>ú</b> — então é <b>ç</b>: a<b>ç</b>úcar.'}
+];
+var G5B=[
+  {q:'O Ç pode aparecer no COMEÇO de uma palavra?',
+   opts:['Não, nunca','Sim, sempre','Só quando a palavra é grande'], r:0,
+   exp:'O <b>ç nunca</b> começa uma palavra. Por isso não existe "çapato" nem "çenoura". 😄'},
+  {q:'O Ç vem antes de quais letras?',
+   opts:['a, o, u','e, i','todas as letras'], r:0,
+   exp:'O <b>ç</b> só brinca com <b>a, o, u</b>: lou<b>ça</b>, mo<b>ço</b>, a<b>çú</b>car. O <b>ã</b> e o <b>ão</b> também valem, porque são da família do <b>a</b>: ma<b>çã</b>, cora<b>ção</b>.'},
+  {q:'Antes das letras E e I, escrevemos C ou Ç?',
+   opts:['o C','o Ç','tanto faz'], r:0,
+   exp:'Antes de <b>e</b> e <b>i</b> escrevemos <b>c</b>, que já faz o som de SSS sozinho: <b>ce</b>noura, <b>ci</b>nema, do<b>ce</b>. "çe" e "çi" não existem!'}
+];
+function g5_start(){ G={fase:'a', idx:0, ordem:shuffleSeeded(G5A.map(function(_,i){return i;}),'g5ordem')}; g5_render(); }
+function g5_render(){
+  if(G.fase==='a'){
+    if(G.idx>=G.ordem.length){ G.fase='b'; G.idx=0; g5_render(); return; }
+    var q=G5A[G.ordem[G.idx]];
+    setTitle('🍭 Complete com C ou Ç','Palavra '+(G.idx+1)+' de '+G.ordem.length);
+    var show=q.w.replace('_','<span style="color:var(--rose-dark)">__</span>');
+    var order=shuffleSeeded(['c','ç'],'g5op'+G.idx);
+    var html='<div class="q-sentence">'+show+'</div><div class="punct-row">';
+    for(var k=0;k<order.length;k++){
+      html+='<button class="opt" data-p="'+order[k]+'" onclick="g5_ansA(this,\''+order[k]+'\')">'+order[k]+'</button>';
+    }
+    area().innerHTML=html+'</div>';
+  }else{
+    if(G.idx>=G5B.length){ winFase(5,'A cedilha não tem mais segredo para você! ça, ço, çu ✅ 🍭'); return; }
+    setTitle('🍭 A regra de ouro','Pergunta '+(G.idx+1)+' de '+G5B.length);
+    renderMC(G5B[G.idx],'g5b'+G.idx,'g5_ansB');
+  }
+}
+function g5_ansA(btn,p){
+  var q=G5A[G.ordem[G.idx]];
+  var bs=document.querySelectorAll('#gameArea .opt');
+  for(var k=0;k<bs.length;k++){ bs[k].disabled=true; if(bs[k].getAttribute('data-p')===q.r) bs[k].classList.add('right'); }
+  if(p===q.r){ showFb(true,'Fica <b>'+q.full+'</b>. '+q.exp); }
+  else{ btn.classList.add('wrong'); showFb(false,q.exp+'<span class="fb-right">✅ A palavra certa é: '+q.full+'</span>'); }
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g5_render(); };
+}
+function g5_ansB(btn,i){
+  markMC(btn,i,G5B[G.idx]);
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g5_render(); };
+}
+
+/* =====================================================
+   RECEITA 6 — INTERPRETAÇÃO DE TEXTO
+   ===================================================== */
+var TEXTO_PRESENTE='<div class="story"><h4>O melhor presente</h4>'+
+ '<p>Faltavam poucos dias para o Dia dos Pais. Tomás queria dar ao seu pai, o Seu Beto, o presente mais bonito do mundo. O problema é que no cofrinho dele só havia quatro moedas.</p>'+
+ '<p>Tomás foi falar com a avó:</p>'+
+ '<p>— Vovó, o que eu compro para o papai com tão pouquinho dinheiro? Queria algo que ele nunca esquecesse!</p>'+
+ '<p>A avó sorriu e respondeu:</p>'+
+ '<p>— Meu neto, o seu pai trabalha a semana toda e adora ficar com você. O presente que ele mais quer não está em nenhuma loja. Que tal usar a sua criatividade?</p>'+
+ '<p>Tomás passou a tarde pensando. No domingo bem cedo, ele desenhou um cartão em forma de coração, pintou a família inteira e escreveu: "Vale um domingo inteiro de pescaria com o seu filho!" Levou também um copo de suco e um pão na chapa para o pai tomar café na cama.</p>'+
+ '<p>Quando Seu Beto leu o cartão, os olhos dele brilharam e ele abriu um sorriso enorme.</p>'+
+ '<p>— Esse é, com certeza, o melhor presente que eu já ganhei! — disse ele, dando um abraço bem apertado em Tomás.</p>'+
+ '</div>';
+var G6=[
+  {q:'Qual é o problema de Tomás no começo da história?',
+   opts:['Ele queria dar um presente muito especial, mas só tinha quatro moedas','Ele tinha perdido o cofrinho','Ele não sabia quando era o Dia dos Pais'], r:0,
+   exp:'No 1º parágrafo está escrito que ele queria "o presente mais bonito do mundo", mas "no cofrinho dele só havia <b>quatro moedas</b>".'},
+  {q:'Para quem Tomás pediu ajuda?',
+   opts:['Para a avó','Para a professora','Para o vizinho'], r:0,
+   exp:'O texto diz: "Tomás foi falar com a <b>avó</b>". É ela quem dá o conselho.'},
+  {q:'Qual foi o conselho que a avó deu?',
+   opts:['Usar a criatividade, porque o melhor presente não se compra em loja','Pedir dinheiro emprestado','Comprar o presente mais barato da loja'], r:0,
+   exp:'A avó respondeu: "O presente que ele mais quer <b>não está em nenhuma loja</b>. Que tal usar a sua <b>criatividade</b>?"'},
+  {q:'Qual era o FORMATO do cartão que Tomás fez?',
+   opts:['De coração','De gravata','De estrela'], r:0,
+   exp:'O texto diz que ele "desenhou um cartão em forma de <b>coração</b>".'},
+  {q:'O que Tomás escreveu no cartão?',
+   opts:['"Vale um domingo inteiro de pescaria com o seu filho!"','"Feliz aniversário, papai!"','"Vale um sorvete de chocolate."'], r:0,
+   exp:'Está escrito no texto, entre aspas: "<b>Vale um domingo inteiro de pescaria com o seu filho!</b>"'},
+  {q:'O que Tomás levou junto com o cartão?',
+   opts:['Um copo de suco e um pão na chapa','Um bolo de chocolate','Um buquê de flores'], r:0,
+   exp:'O texto diz: "Levou também um <b>copo de suco</b> e um <b>pão na chapa</b> para o pai tomar café na cama."'},
+  {q:'De acordo com o texto, o que o pai sentiu ao receber o presente?',
+   opts:['Ficou muito feliz e emocionado: os olhos brilharam e ele abriu um sorriso enorme','Ficou triste porque queria outra coisa','Ficou bravo com o filho'], r:0,
+   exp:'O texto conta: "os <b>olhos dele brilharam</b> e ele abriu um <b>sorriso enorme</b>", e ainda disse que era o melhor presente que já tinha ganhado. 💛'},
+  {q:'Por que o presente foi tão especial mesmo custando quase nada?',
+   opts:['Porque foi feito com carinho e oferecia tempo junto com o pai','Porque era o presente mais caro da loja','Porque era um presente de aniversário'], r:0,
+   exp:'A história mostra que o que o pai mais queria era <b>ficar com o filho</b> — e o cartão dava exatamente isso: um domingo inteiro juntos.'}
+];
+function g6_start(){ G={fase:'ler', idx:0}; g6_render(); }
+function g6_render(){
+  if(G.fase==='ler'){
+    setTitle('📖 Leia a história com atenção!','Pode ler em voz alta ou com um adulto 💛');
+    area().innerHTML=TEXTO_PRESENTE+'<button class="btn caramel" onclick="g6_go()">Já li! Vamos às perguntas ➡️</button>';
+    return;
+  }
+  if(G.idx>=G6.length){ winFase(6,'Que olho de detetive: você achou todas as respostas dentro do texto! 🕵️'); return; }
+  setTitle('📖 Marque a resposta certa!','Pergunta '+(G.idx+1)+' de '+G6.length);
+  var q=G6[G.idx];
+  var html='<details style="margin-bottom:8px;"><summary>👀 Espiar a história de novo</summary>'+TEXTO_PRESENTE+'</details>';
+  html+='<div class="q-sentence" style="font-size:1.03rem;">'+q.q+'</div>';
+  var order=optOrder(q,'g6'+G.idx);
+  for(var k=0;k<order.length;k++){
+    var i=order[k];
+    html+='<button class="opt" data-i="'+i+'" onclick="g6_ans(this,'+i+')">'+q.opts[i]+'</button>';
+  }
+  area().innerHTML=html;
+}
+function g6_go(){ G.fase='q'; G.idx=0; clearFb(); g6_render(); }
+function g6_ans(btn,i){
+  markMC(btn,i,G6[G.idx]);
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); G.idx++; g6_render(); };
+}
+
+/* =====================================================
+   GRANDE BOLO FINAL — 10 perguntas misturadas
+   ===================================================== */
+var FINAL=[
+  {q:'"Quem comeu o meu doce__" Qual sinal completa a frase?',
+   opts:['?','!','.'], r:0, punct:true,
+   exp:'É uma <b>pergunta</b> (começa com "Quem"). Fica: "Quem comeu o meu doce<b>?</b>"'},
+  {q:'"Que bolo delicioso__" Qual sinal completa a frase?',
+   opts:['!','?','.'], r:0, punct:true,
+   exp:'É <b>emoção forte</b> (admiração). Fica: "Que bolo delicioso<b>!</b>"'},
+  {q:'"O tempo está chuvoso." — essa frase é...',
+   opts:['afirmativa','interrogativa','exclamativa'], r:0,
+   exp:'Termina com <b>ponto-final</b> e só conta algo com calma: é frase <b>afirmativa</b>.'},
+  {q:'Qual destas palavras é substantivo PRÓPRIO?',
+   opts:['Curitiba','cidade','telefone'], r:0,
+   exp:'<b>Curitiba</b> é o nome especial de uma cidade e começa com MAIÚSCULA. "cidade" e "telefone" são comuns.'},
+  {q:'Qual destas palavras é substantivo COMUM?',
+   opts:['abelha','Manaus','Lucas'], r:0,
+   exp:'<b>abelha</b> fala do bichinho em geral, com minúscula. "Manaus" e "Lucas" são nomes próprios.'},
+  {q:'Como sabemos que começou um PARÁGRAFO novo?',
+   opts:['Começa em uma linha nova, com um espacinho para dentro','Começa com letra minúscula','Vem sempre com um número na frente'], r:0,
+   exp:'O parágrafo começa em <b>linha nova</b>, com um <b>espacinho para dentro</b> (o recuo) e letra maiúscula.'},
+  {q:'Complete: a_úcar',
+   opts:['ç (açúcar)','c (acúcar)','s (asúcar)'], r:0,
+   exp:'Vem antes da letra <b>ú</b>, e antes de <b>a, o, u</b> usamos <b>ç</b>: a<b>ç</b>úcar.'},
+  {q:'Onde o Ç NUNCA pode aparecer?',
+   opts:['No começo da palavra','No meio da palavra','Antes da letra a'], r:0,
+   exp:'O <b>ç nunca começa</b> uma palavra. Ele fica no meio: ma<b>ç</b>ã, mo<b>ç</b>o, a<b>ç</b>úcar.'},
+  {q:'Qual frase está escrita do jeito CERTO?',
+   opts:['Eu adoro pão de queijo.','Euadoropãodequeijo.','queijo de pão adoro Eu.'], r:0,
+   exp:'A frase certa tem <b>espaço entre as palavras</b>, <b>ordem certa</b>, começa com <b>maiúscula</b> e termina com <b>ponto</b>.'},
+  {q:'Na história "O melhor presente", o que Tomás escreveu no cartão?',
+   opts:['"Vale um domingo inteiro de pescaria com o seu filho!"','"Vale um sorvete de chocolate."','"Feliz aniversário, papai!"'], r:0,
+   exp:'Está escrito no texto: "<b>Vale um domingo inteiro de pescaria com o seu filho!</b>"'}
+];
+var F={};
+function startFinal(){
+  if(!S.sweets.every(function(v){return v;})) return;
+  F={idx:0, score:0, ordem:shuffleSeeded(FINAL.map(function(_,i){return i;}),'finalordem')};
+  clearFb(); f_render(); go('game');
+}
+function f_render(){
+  if(F.idx>=F.ordem.length){ f_end(); return; }
+  var q=FINAL[F.ordem[F.idx]];
+  setTitle('🏆 Grande Bolo Final!','Pergunta '+(F.idx+1)+' de '+F.ordem.length+' • Acertos: '+F.score);
+  renderMC(q,'final'+F.ordem[F.idx],'f_ans', !!q.punct);
+}
+function f_ans(btn,i){
+  var q=FINAL[F.ordem[F.idx]];
+  if(markMC(btn,i,q)) F.score++;
+  nextBtn().style.display='block';
+  nextBtn().onclick=function(){ clearFb(); F.idx++; f_render(); };
+}
+function f_end(){
+  var letras='ABCDEFGHJKLMNPQRSTUVWXYZ'; /* sem I e sem O */
+  if(!S.finalCode){
+    var y1=letras[Math.floor(Math.random()*letras.length)];
+    var y2=letras[Math.floor(Math.random()*letras.length)];
+    S.codeLetters=y1+y2;
+  }
+  if(!S.codeLetters){
+    S.codeLetters=(S.finalCode||'SIM-00-AB').slice(-2);
+  }
+  if(S.finalScore===null || F.score>S.finalScore){ S.finalScore=F.score; }
+  S.finalCode='SIM-'+String(S.finalScore).padStart(2,'0')+'-'+S.codeLetters;
+  save(); confetti(50);
+  document.getElementById('fimScore').textContent='Você acertou '+F.score+' de '+FINAL.length+'!';
+  document.getElementById('fimMsg').innerHTML =
+    F.score>=9 ? '🌟 <b>Chef das Palavras!</b> Está tudo pronto para a prova!' :
+    F.score>=7 ? '👏 <b>Muito bem!</b> Dê uma olhadinha no Cartaz da Cozinha e jogue de novo para brilhar ainda mais.' :
+                 '💪 <b>Bom treino!</b> Que tal reler o Cartaz da Cozinha com um adulto e tentar outra vez? Você consegue!';
+  document.getElementById('fimCode').textContent='🎂 '+S.finalCode;
+  go('fim');
+}
+
+/* =====================================================
+   ÁREA DOS PAIS
+   ===================================================== */
+function renderPais(){
+  var nomes=['🍬 Pontuação','🎂 Parágrafo','🫙 Substantivos','🥄 Escrita de frases','🍭 Cedilha','📖 Interpretação'];
+  var html='<h3>📊 Progresso</h3><ol class="steps">';
+  for(var i=0;i<nomes.length;i++){
+    html+='<li>'+nomes[i]+': '+(S.sweets[i]
+      ? '<b style="color:var(--mint)">concluído ✅</b>'
+      : '<span style="color:var(--gray)">pendente ⏳</span>')+'</li>';
+  }
+  html+='<li>🏆 Grande Bolo Final: '+(S.finalScore!==null
+    ? ('<b>'+S.finalScore+'/10</b> — código <b>'+S.finalCode+'</b>')
+    : '<span style="color:var(--gray)">ainda não jogado</span>')+'</li></ol>';
+  html+='<p class="save-info">'+(S.savedAt?('Último salvamento automático: '+S.savedAt):'Nenhum progresso salvo ainda.')+'</p>';
+  document.getElementById('paisStatus').innerHTML=html;
+
+  var gab='<ol class="steps">';
+  for(var k=0;k<FINAL.length;k++){
+    gab+='<li>'+FINAL[k].q+'<br><b style="color:var(--mint)">→ '+FINAL[k].opts[FINAL[k].r]+'</b><br>'+
+         '<span style="font-size:.9rem; color:var(--gray);">'+FINAL[k].exp+'</span></li>';
+  }
+  document.getElementById('gabarito').innerHTML=gab+'</ol>';
+}
+function exportar(){
+  document.getElementById('backupBox').value=JSON.stringify(S);
+  modal('📥 Backup gerado','Pronto! Copie o texto da caixinha e guarde onde quiser (pode colar num WhatsApp ou bloco de notas).');
+}
+function importar(){
+  var v=document.getElementById('backupBox').value.trim();
+  if(!v){ modal('📤 Importar','Cole primeiro o código do backup na caixinha e clique em Importar de novo.'); return; }
+  try{
+    var o=JSON.parse(v);
+    for(var k in o){ if(o.hasOwnProperty(k)) S[k]=o[k]; }
+    save(); renderPais();
+    modal('🎉 Tudo certo!','Progresso restaurado com sucesso.');
+  }catch(e){
+    modal('🤔 Ops','Esse código não parece um backup válido. Confira se você colou o texto inteiro.');
+  }
+}
+function zerar(){
+  modal('🗑️ Zerar tudo','Tem certeza? <b>Todo o progresso será apagado</b> e não dá para desfazer.', function(){
+    var seed=S.seed;
+    S={sweets:[false,false,false,false,false,false], seed:seed, finalScore:null, finalCode:null, codeLetters:null, savedAt:null};
+    lsDel(KEY);
+    refreshMenu(); renderPais();
+    modal('✨ Pronto','O material foi zerado. Pode começar de novo!');
+  }, true);
+}
+
+/* ---------- Início ---------- */
+save();
+refreshMenu();
+</script>
+</body>
+</html>
